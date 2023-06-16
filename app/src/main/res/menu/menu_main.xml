@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.sfawebview.MainActivity">
+
+    <item
+        android:id="@+id/action_back"
+        android:title="Back"
+        android:icon="@drawable/ic_arrow_back_ios_24"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
+        android:orderInCategory="1" />
+
+    <item
+        android:id="@+id/action_copy_link"
+        android:title="Copy"
+        android:icon="@drawable/ic_content_copy_24"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
+        android:orderInCategory="2" />
+
+    <item
+        android:id="@+id/action_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
+        android:orderInCategory="3" />
+
+    <item
+        android:id="@+id/action_go_forward"
+        android:title="Forward"
+        android:icon="@drawable/ic_arrow_forward_ios_24"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
+        android:orderInCategory="4" />
+
+</menu>
