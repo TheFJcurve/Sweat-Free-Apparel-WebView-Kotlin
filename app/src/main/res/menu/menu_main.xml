@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <menu
 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,20 +16,12 @@
         android:orderInCategory="1" />
 
     <item
-        android:id="@+id/action_copy_link"
-        android:title="Copy"
-        android:icon="@drawable/ic_content_copy_24"
-        app:showAsAction="always"
-        tools:ignore="HardcodedText"
-        android:orderInCategory="2" />
-
-    <item
         android:id="@+id/action_home"
         android:title="Home"
         android:icon="@drawable/ic_home"
         app:showAsAction="always"
         tools:ignore="HardcodedText"
-        android:orderInCategory="3" />
+        android:orderInCategory="2" />
 
     <item
         android:id="@+id/action_go_forward"
@@ -36,6 +29,30 @@
         android:icon="@drawable/ic_arrow_forward_ios_24"
         app:showAsAction="always"
         tools:ignore="HardcodedText"
+        android:orderInCategory="6" />
+
+    <item
+        android:id="@+id/action_share"
+        android:title="Share"
+        android:icon="@drawable/ic_share_24"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
+        android:orderInCategory="3" />
+
+    <item
+        android:id="@+id/action_open_external"
+        android:title="Browser"
+        android:icon="@drawable/ic_open_in_browser_24"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
         android:orderInCategory="4" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="Reload"
+        android:icon="@drawable/ic_refresh_24"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText"
+        android:orderInCategory="5" />
 
 </menu>

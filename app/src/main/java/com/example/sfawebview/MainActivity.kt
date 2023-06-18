@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -51,13 +53,21 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
-            R.id.action_copy_link -> {
-                copyCurrentLink()
+            R.id.action_go_forward -> {
+                goForward()
                 true
             }
 
-            R.id.action_go_forward -> {
-                goForward()
+            R.id.action_share -> {
+                shareLink()
+                true
+            }
+            R.id.action_open_external -> {
+                openExternalLink()
+                true
+            }
+            R.id.action_refresh -> {
+                refreshPage()
                 true
             }
 
@@ -69,20 +79,6 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (webView.canGoBack()) {
             webView.goBack()
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    private fun copyCurrentLink() {
-        val currentUrl = webView.url
-        if (currentUrl != null) {
-            val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clipData = ClipData.newPlainText("URL", currentUrl)
-            clipboardManager.setPrimaryClip(clipData)
-            Toast.makeText(this, "URL Copied", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -97,4 +93,31 @@ class MainActivity : AppCompatActivity() {
     private fun navigateHome() {
         webView.loadUrl(homeUrl)
     }
+
+    private fun shareLink() {
+        val currentUrl = webView.url
+        if (currentUrl != null) {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, currentUrl)
+            startActivity(Intent.createChooser(shareIntent, "Share Link"))
+        } else {
+            Toast.makeText(this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openExternalLink() {
+        val currentUrl = webView.url
+        if (currentUrl != null) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl))
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun refreshPage() {
+        webView.reload()
+    }
+
 }
