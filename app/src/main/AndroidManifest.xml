@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+. Granting permissions. I have taken the internet permissions for this app.
+-->
+
 <manifest
 
     xmlns:android="http://schemas.android.com/apk/res/android"

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+. Describes the overall layout of the application. Open the design window to see what the code is
+making.
+. LinearLayout means that the elements are displayed in the order they are written in.
+. Content is either wrapped or matches parent. Wrapped content is just as big as the items in it,
+whereas the elements that match the parent cover the whole screen/height/width as per the phone.
+-->
+
 <LinearLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
