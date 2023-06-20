@@ -1,9 +1,6 @@
 package com.example.sfawebview
 
 import android.annotation.SuppressLint
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -79,6 +76,8 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (webView.canGoBack()) {
             webView.goBack()
+        } else {
+            Toast.makeText(this, "Cannot go back", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -102,7 +101,8 @@ class MainActivity : AppCompatActivity() {
             shareIntent.putExtra(Intent.EXTRA_TEXT, currentUrl)
             startActivity(Intent.createChooser(shareIntent, "Share Link"))
         } else {
-            Toast.makeText(this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
         }
     }
 

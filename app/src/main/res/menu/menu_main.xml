@@ -5,14 +5,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.sfawebview.MainActivity">
+    tools:context="com.example.sfawebview.MainActivity"
+    tools:ignore="AlwaysShowAction,HardcodedText">
 
     <item
         android:id="@+id/action_back"
         android:title="Back"
         android:icon="@drawable/ic_arrow_back_ios_24"
         app:showAsAction="always"
-        tools:ignore="HardcodedText"
         android:orderInCategory="1" />
 
     <item
@@ -20,23 +20,13 @@
         android:title="Home"
         android:icon="@drawable/ic_home"
         app:showAsAction="always"
-        tools:ignore="HardcodedText"
         android:orderInCategory="2" />
-
-    <item
-        android:id="@+id/action_go_forward"
-        android:title="Forward"
-        android:icon="@drawable/ic_arrow_forward_ios_24"
-        app:showAsAction="always"
-        tools:ignore="HardcodedText"
-        android:orderInCategory="6" />
 
     <item
         android:id="@+id/action_share"
         android:title="Share"
         android:icon="@drawable/ic_share_24"
         app:showAsAction="always"
-        tools:ignore="HardcodedText"
         android:orderInCategory="3" />
 
     <item
@@ -44,7 +34,6 @@
         android:title="Browser"
         android:icon="@drawable/ic_open_in_browser_24"
         app:showAsAction="always"
-        tools:ignore="HardcodedText"
         android:orderInCategory="4" />
 
     <item
@@ -52,7 +41,13 @@
         android:title="Reload"
         android:icon="@drawable/ic_refresh_24"
         app:showAsAction="always"
-        tools:ignore="HardcodedText"
         android:orderInCategory="5" />
+
+    <item
+        android:id="@+id/action_go_forward"
+        android:title="Forward"
+        android:icon="@drawable/ic_arrow_forward_ios_24"
+        app:showAsAction="always"
+        android:orderInCategory="6" />
 
 </menu>

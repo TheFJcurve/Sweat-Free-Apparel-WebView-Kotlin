@@ -7,14 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:ignore="MissingConstraints" />
+    tools:context=".MainActivity"
+    tools:ignore="MissingConstraints">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +19,18 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:elevation="4dp"
-            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
             android:theme="?attr/toolbarStyle"
             android:layout_gravity="center"/>
 
     </LinearLayout>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
 
 </LinearLayout>
