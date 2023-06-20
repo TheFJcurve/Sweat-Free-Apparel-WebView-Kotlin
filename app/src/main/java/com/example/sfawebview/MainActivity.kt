@@ -35,16 +35,16 @@ class MainActivity : AppCompatActivity() {
 
         // Setting up the WebView. This shows our website in the app. Below I have made it possible
         // to zoom and write JavaScript code (to make buttons and write other commands).
-        // If you wish to change the website displayed, just change the homeurl variable, or
-        // input the url you wish to see in .loadurl()
+        // If you wish to change the website displayed, just change the homeUrl variable, or
+        // input the url you wish to see in .loadUrl()
         webView.webViewClient = WebViewClient()
         webView.loadUrl(homeUrl)
         webView.settings.setSupportZoom(true)
         webView.settings.javaScriptEnabled = true
     }
 
-    // menu_main.xml contains all the information regarding a button (the button icon, positioning, etc)
-    // Calling this function helps us get the menu_main information into this project.
+    // menu_main.xml contains all the information regarding a button (the button icon, positioning,
+    // etc). Calling this function helps us get the menu_main information into this project.
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     // Setting up button functions
 
 
+
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Go to the previously shown page each time you click, until can't go back.
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         if (webView.canGoBack()) {
             webView.goBack()
         } else {
-            Toast.makeText(this, "Cannot go back", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot go Back", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -109,7 +110,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateHome() {
         // Calls the home url and loads that page. Therefore, this takes us back to the main page
-        webView.loadUrl(homeUrl)
+        webView.loadUrl(getHomeUrl(webView.url))
+
+    }
+
+    private fun getHomeUrl(url: String?): String {
+        if (url != null) {
+            val index = url.indexOf("/", 8) // Find the first occurrence of "/" after "https://"
+            if (index != -1) {
+                return url.substring(0, index + 1)
+            }
+        }
+        return homeUrl
     }
 
     private fun shareLink() {
