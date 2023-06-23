@@ -13,7 +13,6 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 const val channelId = "notification_channel"
-const val channelName = "com.example.sfawebview"
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -32,7 +31,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun getCustomDesign(title: String, message: String): RemoteViews {
-        val remoteView = RemoteViews(channelName, R.layout.notification_main)
+        val remoteView = RemoteViews(
+            "com.example.sfawebview",
+            R.layout.notification_main
+        )
 
         remoteView.setTextViewText(R.id.title, title)
         remoteView.setTextViewText(R.id.message, message)
@@ -52,7 +54,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             PendingIntent.FLAG_ONE_SHOT
         )
 
-        var builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, channelId)
+        var builder: NotificationCompat.Builder = NotificationCompat.Builder(
+            applicationContext,
+            channelId
+        )
             .setSmallIcon(R.drawable.sweatfree_logo_round)
             .setAutoCancel(true)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
@@ -66,7 +71,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel =
-                NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
+                NotificationChannel(channelId, "Sweat Free", NotificationManager.IMPORTANCE_HIGH)
             notificationManager.createNotificationChannel(notificationChannel)
         }
 
