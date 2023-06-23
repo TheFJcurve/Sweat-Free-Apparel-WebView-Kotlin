@@ -33,14 +33,14 @@ color, positioning or button name.
         android:title="Share"
         android:icon="@drawable/ic_share_24"
         app:showAsAction="always"
-        android:orderInCategory="3" />
+        android:orderInCategory="4" />
 
     <item
         android:id="@+id/action_refresh"
         android:title="Reload"
         android:icon="@drawable/ic_refresh_24"
         app:showAsAction="always"
-        android:orderInCategory="5" />
+        android:orderInCategory="3" />
 
     <item
         android:id="@+id/action_go_forward"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/sweatfree_logo_round"
+        android:contentDescription="Logo to be displayed on notification"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/app_logo"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is the message"
+        android:textSize="20dp"
+        android:layout_toEndOf="@id/app_logo"
+        android:layout_below="@id/title"
+        android:layout_marginStart="10dp"
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+</RelativeLayout>

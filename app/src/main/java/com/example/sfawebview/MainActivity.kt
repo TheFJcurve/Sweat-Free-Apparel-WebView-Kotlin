@@ -13,6 +13,7 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.FirebaseApp
 
 // In this document you will see Deprecation and Deprecated In Java Terms thrown around.
 // They do not mean any error or harm. These are simply those modules or methods that are
@@ -41,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         webView.loadUrl(homeUrl)
         webView.settings.setSupportZoom(true)
         webView.settings.javaScriptEnabled = true
+
+        // Checking if Firebase works
+        FirebaseApp.initializeApp(this)
     }
 
     // menu_main.xml contains all the information regarding a button (the button icon, positioning,
@@ -110,18 +114,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateHome() {
         // Calls the home url and loads that page. Therefore, this takes us back to the main page
-        webView.loadUrl(getHomeUrl(webView.url))
+        webView.loadUrl(homeUrl)
 
-    }
-
-    private fun getHomeUrl(url: String?): String {
-        if (url != null) {
-            val index = url.indexOf("/", 8) // Find the first occurrence of "/" after "https://"
-            if (index != -1) {
-                return url.substring(0, index + 1)
-            }
-        }
-        return homeUrl
     }
 
     private fun shareLink() {

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "887814755215",
+    "project_id": "sfawebview",
+    "storage_bucket": "sfawebview.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887814755215:android:149ae2548502091f21b1fa",
+        "android_client_info": {
+          "package_name": "com.example.sfawebview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887814755215-eh99fslbtoriur58val147q4n2cn6e2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7jWee3Id-syo1p1wEiXu95ltBKhSw0fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887814755215-eh99fslbtoriur58val147q4n2cn6e2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
