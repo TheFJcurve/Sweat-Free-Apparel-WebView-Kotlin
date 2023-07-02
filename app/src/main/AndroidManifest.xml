@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<!--
+android:roundIcon: CHANGE THE ICONS AND LOGO
+android:label: CHANGE THE NAME OF THIS APPLICATION
+ -->
+
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sfawebview">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/sweatfree_logo"
-        android:label=""
         android:roundIcon="@drawable/sweatfree_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SFAWebview">
+        android:label="Sweat Free">
 
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.SFAWebview"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,12 +46,8 @@
             android:resource="@color/black" />
 
         <meta-data
-            android:name="firebase_messaging_auto_init_enabled"
-            android:value="false" />
-
-        <meta-data
-            android:name="firebase_analytics_collection_enabled"
-            android:value="false" />
-
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@layout/notification_main" />
     </application>
+
 </manifest>

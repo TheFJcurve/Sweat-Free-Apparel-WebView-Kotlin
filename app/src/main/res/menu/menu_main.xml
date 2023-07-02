@@ -29,13 +29,6 @@ color, positioning or button name.
         android:orderInCategory="2" />
 
     <item
-        android:id="@+id/action_share"
-        android:title="Share"
-        android:icon="@drawable/ic_share_24"
-        app:showAsAction="always"
-        android:orderInCategory="4" />
-
-    <item
         android:id="@+id/action_refresh"
         android:title="Reload"
         android:icon="@drawable/ic_refresh_24"
@@ -43,10 +36,17 @@ color, positioning or button name.
         android:orderInCategory="3" />
 
     <item
+        android:id="@+id/action_share"
+        android:title="Share"
+        android:icon="@drawable/ic_share_24"
+        app:showAsAction="always"
+        android:orderInCategory="4" />
+
+    <item
         android:id="@+id/action_go_forward"
         android:title="Forward"
         android:icon="@drawable/ic_arrow_forward_ios_24"
         app:showAsAction="always"
-        android:orderInCategory="6" />
+        android:orderInCategory="5" />
 
 </menu>
