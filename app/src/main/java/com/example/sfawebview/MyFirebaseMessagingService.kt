@@ -1,12 +1,9 @@
 package com.example.sfawebview
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -26,28 +23,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.d(TAG, "New Token: $token")
     }
 
-
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        if (remoteMessage.notification != null) {
+        if (remoteMessage.getNotification() != null) {
             showNotification(
-                remoteMessage.notification!!.title!!,
-                remoteMessage.notification!!.body!!
+                remoteMessage.getNotification()!!.getTitle()!!,
+                remoteMessage.getNotification()!!.getBody()!!
             )
         }
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     private fun showNotification(title: String, message: String) {
-
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-        val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent,
-            PendingIntent.FLAG_ONE_SHOT
-        )
-
-        var builder: NotificationCompat.Builder = NotificationCompat.Builder(
+        val builder: NotificationCompat.Builder = NotificationCompat.Builder(
             this,
             channelId
         )
@@ -57,7 +43,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentText(message)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setOnlyAlertOnce(true)
-            .setContentIntent(pendingIntent)
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
@@ -68,6 +53,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager!!.createNotificationChannel(notificationChannel)
         }
 
-        notificationManager!!.notify(1, builder.build())
+        notificationManager!!.notify(0, builder.build())
     }
 }

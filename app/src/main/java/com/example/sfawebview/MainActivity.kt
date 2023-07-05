@@ -3,13 +3,10 @@ package com.example.sfawebview
 // This is The MainActivity file of the project. Here all the compilation, JavaScript coding
 // and button functionality is written.
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -18,11 +15,9 @@ import android.view.WindowManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
@@ -42,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(R.layout.activity_main)
 
         // Register for Firebase Cloud Messaging
@@ -64,16 +60,18 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
 
 
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                if (url != null && (!url.startsWith(homeUrl) || url == homeUrl)) {
-                    supportActionBar?.show() // Show the toolbar for external websites
-                } else {
-                    supportActionBar?.hide() // Hide the toolbar for the home page
-                }
-            }
-        }
+        // When you want the toolbar to only open when you open an external website
+
+//        webView.webViewClient = object : WebViewClient() {
+//            override fun onPageFinished(view: WebView?, url: String?) {
+//                super.onPageFinished(view, url)
+//                if (url != null && (!url.startsWith(homeUrl) || url == homeUrl)) {
+//                    supportActionBar?.show() // Show the toolbar for external websites
+//                } else {
+//                    supportActionBar?.hide() // Hide the toolbar for the home page
+//                }
+//            }
+//        }
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -102,15 +100,6 @@ class MainActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
 
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
-        // Check if the activity was opened from a notification
-        val intent = intent
-        if (intent.extras != null) {
-            // Handle the notification data here
-            val notificationData = intent.extras
-            // TODO: Handle the notification data as required
-        }
-
     }
 
     // menu_main.xml contains all the information regarding a button (the button icon, positioning,
@@ -121,61 +110,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Setting up all of the functions
-
-    // Declare the launcher at the top of your Activity/Fragment:
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
-        } else {
-            // TODO: Inform user that your app will not show notifications.
-        }
-    }
-
-    private fun askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                // TODO: Display an educational UI explaining to the user the features that will be enabled
-                // by granting the POST_NOTIFICATION permission. This UI should provide the user with
-                // "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-                // If the user selects "No thanks," allow the user to continue without notifications.
-
-                // Create and show an AlertDialog with the educational UI
-                val dialogBuilder = AlertDialog.Builder(this)
-                    .setTitle("Notification Permission")
-                    .setMessage("Granting the notification permission allows you to receive important updates and notifications.")
-                    .setPositiveButton("OK") { dialog, _ ->
-                        // Request the permission when the user selects "OK"
-                        requestNotificationPermission()
-                        dialog.dismiss()
-                    }
-                    .setNegativeButton("No thanks") { dialog, _ ->
-                        // Handle "No thanks" action, allow the user to continue without notifications
-                        dialog.dismiss()
-                    }
-
-                val dialog = dialogBuilder.create()
-                dialog.show()
-            } else {
-                // Directly ask for the permission
-                requestNotificationPermission()
-            }
-        }
-    }
-
-    private fun requestNotificationPermission() {
-        // Request the POST_NOTIFICATIONS permission using the permission launcher
-        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-    }
-
 
     // When a button is clicked, this function calls the designated button function on it. Here
     // we link a button with the function.

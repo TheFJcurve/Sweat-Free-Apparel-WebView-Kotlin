@@ -6,7 +6,6 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-
 android {
     namespace 'com.example.sfawebview'
     compileSdk 34
@@ -60,6 +59,6 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
-}
 
-apply plugin: 'com.google.gms.google-services'
+    implementation("androidx.core:core-splashscreen:1.0.1")
+}
