@@ -15,7 +15,7 @@ whereas the elements that match the parent cover the whole screen/height/width a
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.sweatfree.sfawebview.MainActivity"
+    tools:context="com.sweatfree.sftwebview.MainActivity"
     tools:ignore="MissingConstraints">
 
     <WebView
