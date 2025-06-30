@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowInsets
 import android.view.WindowManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -21,17 +22,16 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
+import androidx.core.net.toUri
 
 
 // In this document you will see Deprecation and Deprecated In Java Terms thrown around.
 // They do not mean any error or harm. These are simply those modules or methods that are
 // a little older than the main stream, and are not preferred among developers.
 
-@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var toolbar: Toolbar
-//    private lateinit var appBarLayout: AppBarLayout
     private val homeUrl = "https://www.sweatfree.co" // Our main Website URL
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -49,8 +49,6 @@ class MainActivity : AppCompatActivity() {
 
             // Get the token
             val token = task.result
-
-            // TODO: Send the token to your server or handle it as required
             Log.d(TAG, "FCM registration token: $token")
         })
 
@@ -59,44 +57,12 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClient()
         toolbar = findViewById(R.id.toolbar)
 
-
-        // When you want the toolbar to only open when you open an external website
-
-//        webView.webViewClient = object : WebViewClient() {
-//            override fun onPageFinished(view: WebView?, url: String?) {
-//                super.onPageFinished(view, url)
-//                if (url != null && (!url.startsWith(homeUrl) || url == homeUrl)) {
-//                    supportActionBar?.show() // Show the toolbar for external websites
-//                } else {
-//                    supportActionBar?.hide() // Hide the toolbar for the home page
-//                }
-//            }
-//        }
-
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        // Setting up the WebView. This shows our website in the app. Below I have made it possible
-        // to zoom and write JavaScript code (to make buttons and write other commands).
-        // If you wish to change the website displayed, just change the homeUrl variable, or
-        // input the url you wish to see in .loadUrl()
         webView.loadUrl(homeUrl)
         webView.settings.setSupportZoom(true)
         webView.settings.javaScriptEnabled = true
 
-        // Setting up a dynamic toolbar, which hides when we are scrolling through the app.
-        // It also automatically comes back up when needed.
-        // appBarLayout = findViewById(R.id.appBarLayout)
-
-//        webView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-//            if (scrollY < oldScrollY) {
-//                appBarLayout.visibility = View.GONE // Hide the AppBarLayout
-//            } else {
-//                appBarLayout.visibility = View.VISIBLE // Show the AppBarLayout
-//            }
-//        }
-
-        // Checking if Firebase works
         FirebaseApp.initializeApp(this)
 
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -145,8 +111,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Setting up button functions
-
-    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Go to the previously shown page each time you click, until can't go back.
         // Then display a text saying "cannot go back"
@@ -182,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_TEXT, currentUrl)
 
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl))
+            val browserIntent = Intent(Intent.ACTION_VIEW, currentUrl.toUri())
 
             // Create a chooser with both the share intent and the browser intent
             val chooserIntent = Intent.createChooser(shareIntent, "Share Link")
@@ -196,7 +160,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshPage() {
-        // Reloads page
         webView.reload()
     }
 }
