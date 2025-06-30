@@ -6,24 +6,21 @@ package com.example.sfawebview
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.WindowInsets
 import android.view.WindowManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
-import androidx.core.net.toUri
-
 
 // In this document you will see Deprecation and Deprecated In Java Terms thrown around.
 // They do not mean any error or harm. These are simply those modules or methods that are
@@ -41,17 +38,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Register for Firebase Cloud Messaging
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(
+            OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
+                }
 
-            // Get the token
-            val token = task.result
-            Log.d(TAG, "FCM registration token: $token")
-        })
-
+                // Get the token
+                val token = task.result
+                Log.d(TAG, "FCM registration token: $token")
+            },
+        )
 
         webView = findViewById(R.id.webView)
         webView.webViewClient = WebViewClient()
@@ -79,8 +77,8 @@ class MainActivity : AppCompatActivity() {
 
     // When a button is clicked, this function calls the designated button function on it. Here
     // we link a button with the function.
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
             R.id.action_back -> {
                 onBackPressed()
                 true
@@ -108,7 +106,6 @@ class MainActivity : AppCompatActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
-    }
 
     // Setting up button functions
     override fun onBackPressed() {
@@ -134,7 +131,6 @@ class MainActivity : AppCompatActivity() {
     private fun navigateHome() {
         // Calls the home url and loads that page. Therefore, this takes us back to the main page
         webView.loadUrl(homeUrl)
-
     }
 
     private fun shareLink() {
@@ -154,8 +150,7 @@ class MainActivity : AppCompatActivity() {
 
             startActivity(chooserIntent)
         } else {
-            Toast.makeText(
-                this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Unable to get current URL", Toast.LENGTH_SHORT).show()
         }
     }
 
