@@ -7,7 +7,7 @@ android:label: CHANGE THE NAME OF THIS APPLICATION
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sfawebview">
+    package="com.sweatfree.sfawebview">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -20,7 +20,7 @@ android:label: CHANGE THE NAME OF THIS APPLICATION
         android:label="Sweat Free">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.sweatfree.sfawebview.MainActivity"
             android:theme="@style/Theme.SFAWebview"
             android:exported="true">
             <intent-filter>

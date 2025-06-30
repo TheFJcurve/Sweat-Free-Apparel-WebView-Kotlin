@@ -11,7 +11,7 @@ color, positioning or button name.
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.sfawebview.MainActivity"
+    tools:context="com.sweatfree.sfawebview.com.sweatfree.sfawebview.MainActivity"
     tools:ignore="AlwaysShowAction,HardcodedText">
 
     <item

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.sfawebview'
+    namespace 'com.sweatfree.sfawebview'
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.example.sfawebview"
+        applicationId 'com.sweatfree.sfawebview'
         minSdk 24
         targetSdk 36
         versionCode 1
